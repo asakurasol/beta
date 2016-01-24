@@ -2,22 +2,21 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { checkout } from '../actions'
 import { getTotal, getCartProducts } from '../reducers'
-import Cart from '../components/Cart'
+import Deck from '../components/Deck'
 
-class CartContainer extends Component {
+class DeckContainer extends Component {
   render() {
-    const { products, total } = this.props
+    const { products } = this.props
 
     return (
-      <Cart
+      <Deck
         products={products}
-        total={total}
         onCheckoutClicked={() => this.props.checkout()} />
     )
   }
 }
 
-CartContainer.propTypes = {
+DeckContainer.propTypes = {
   products: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
@@ -30,12 +29,11 @@ CartContainer.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    products: getCartProducts(state),
-    total: getTotal(state)
+    products: getCartProducts(state)
   }
 }
 
 export default connect(
   mapStateToProps,
   { checkout }
-)(CartContainer)
+)(DeckContainer)

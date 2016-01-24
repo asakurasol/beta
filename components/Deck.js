@@ -1,13 +1,13 @@
 import React, { Component, PropTypes } from 'react'
 import Product from './Product'
 
-export default class Cart extends Component {
+export default class Deck extends Component {
   render() {
     const { products, total, onCheckoutClicked } = this.props
 
     const hasProducts = products.length > 0
     const nodes = !hasProducts ?
-      <em>Please add some products to cart.</em> :
+      <em>Please add some products to Deck.</em> :
       products.map(product =>
         <Product
           title={product.title}
@@ -18,19 +18,18 @@ export default class Cart extends Component {
 
     return (
       <div>
-        <h3>Your Cart</h3>
+        <h3>Your Deck</h3>
         <div>{nodes}</div>
-        <p>Total: &#36;{total}</p>
         <button onClick={onCheckoutClicked}
           disabled={hasProducts ? '' : 'disabled'}>
-          Checkout
+          Clear Deck
         </button>
       </div>
     )
   }
 }
 
-Cart.propTypes = {
+Deck.propTypes = {
   products: PropTypes.array,
   total: PropTypes.string,
   onCheckoutClicked: PropTypes.func

@@ -7,15 +7,11 @@ export default class ProductItem extends Component {
 
     return (
       <div
+        onClick={this.props.onAddToCartClicked}
         style={{ marginBottom: 20 }}>
         <Product
           title={product.title}
           price={product.price} />
-        <button
-          onClick={this.props.onAddToCartClicked}
-          disabled={product.inventory > 0 ? '' : 'disabled'}>
-          {product.inventory > 0 ? 'Add to cart' : 'Sold Out'}
-        </button>
       </div>
     )
   }
@@ -25,7 +21,7 @@ ProductItem.propTypes = {
   product: PropTypes.shape({
     title: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
-    inventory: PropTypes.number.isRequired
+    effects: PropTypes.number
   }).isRequired,
   onAddToCartClicked: PropTypes.func.isRequired
 }

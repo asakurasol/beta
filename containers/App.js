@@ -1,16 +1,16 @@
 import React, { Component } from 'react'
 import ProductsContainer from './ProductsContainer'
-import CartContainer from './CartContainer'
+import DeckContainer from './DeckContainer'
 
 export default class App extends Component {
   render() {
     return (
       <div>
-        <h2>Shopping Cart Example</h2>
+        <h1>The First Nations</h1>
         <hr/>
         <ProductsContainer />
         <hr/>
-        <CartContainer />
+        <DeckContainer />
       </div>
     )
   }

@@ -5,8 +5,8 @@ import {
 } from '../constants/ActionTypes'
 
 const initialState = {
-  addedIds: [],
-  quantityById: {}
+  addedIds: [1,4],
+  quantityById: {"1": 7, '4': 3}
 }
 
 function addedIds(state = initialState.addedIds, action) {
