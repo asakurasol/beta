@@ -5,16 +5,27 @@ import {
 } from '../constants/ActionTypes'
 
 const initialState = {
-  addedIds: [1,4],
+  addedIds: shuffleArray([1,4,1,1,1,4,1,1,4,1]),
   quantityById: {"1": 7, '4': 3}
+}
+
+/**
+ * Randomize array element order in-place.
+ * Using Durstenfeld shuffle algorithm.
+ */
+function shuffleArray(array) {
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+    return array;
 }
 
 function addedIds(state = initialState.addedIds, action) {
   switch (action.type) {
     case ADD_TO_CART:
-      if (state.indexOf(action.productId) !== -1) {
-        return state
-      }
       return [ ...state, action.productId ]
     default:
       return state
@@ -37,7 +48,10 @@ function quantityById(state = initialState.quantityById, action) {
 export default function cart(state = initialState, action) {
   switch (action.type) {
     case CHECKOUT_REQUEST:
-      return initialState
+      return {
+               addedIds: shuffleArray([1,4,1,1,1,4,1,1,4,1]),
+               quantityById: {"1": 7, '4': 3}
+             }
     case CHECKOUT_FAILURE:
       return action.cart
     default:

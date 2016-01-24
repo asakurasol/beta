@@ -18,10 +18,10 @@ class DeckContainer extends Component {
 
 DeckContainer.propTypes = {
   products: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    quantity: PropTypes.number.isRequired
+    id: PropTypes.number,
+    title: PropTypes.string,
+    price: PropTypes.number,
+    quantity: PropTypes.number
   })).isRequired,
   total: PropTypes.string,
   checkout: PropTypes.func.isRequired
