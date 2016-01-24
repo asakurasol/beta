@@ -49,3 +49,16 @@ export function checkout(products) {
     })
   }
 }
+
+//assume for now always draw from top
+export function draw(cardCount){
+  return (dispatch, getState) => {
+    const cart = getState().cart
+    const cardsDrawn = cart.addedIds.slice(0,cardCount)
+    dispatch({
+      type: types.DRAW,
+      cardsDrawn: cardsDrawn,
+      discard: true
+    })
+  }
+}

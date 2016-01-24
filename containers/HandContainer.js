@@ -1,39 +1,35 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { checkout, draw } from '../actions'
-import { getTotal, getCartProducts } from '../reducers'
-import Deck from '../components/Deck'
+import { getHand } from '../reducers'
+import Hand from '../components/Hand'
 
-class DeckContainer extends Component {
+class HandContainer extends Component {
   render() {
     const { products } = this.props
 
     return (
-      <Deck
-        products={products}
-        onCheckoutClicked={() => this.props.checkout()}
-        onDrawClicked = { this.props.draw } />
+      <Hand
+        products={products} />
     )
   }
 }
-DeckContainer.propTypes = {
+HandContainer.propTypes = {
   products: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number,
     title: PropTypes.string,
     price: PropTypes.number,
     quantity: PropTypes.number
-  })).isRequired,
-  total: PropTypes.string,
-  checkout: PropTypes.func.isRequired
+  })).isRequired
 }
 
 const mapStateToProps = (state) => {
   return {
-    products: getCartProducts(state)
+    products: getHand(state)
   }
 }
 
 export default connect(
   mapStateToProps,
-  { checkout, draw }
-)(DeckContainer)
+  { draw }
+)(HandContainer)

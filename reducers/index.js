@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux'
 import { default as cart, getQuantity, getAddedIds } from './deck'
 import { default as products, getProduct } from './products'
+import { default as hand, getHandIds } from './hand'
 
 export function getTotal(state) {
   return getAddedIds(state.cart).reduce(function(total, id){
@@ -18,7 +19,14 @@ export function getCartProducts(state) {
   }))
 }
 
+export function getHand(state) {
+  return getHandIds(state.hand).map(id => ({
+    ...getProduct(state.products, id)
+  }))
+}
+
 export default combineReducers({
   cart,
-  products
+  products,
+  hand
 })

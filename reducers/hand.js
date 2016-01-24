@@ -1,31 +1,20 @@
 import {
-  ADD_TO_HAND
+  CHECKOUT_REQUEST, 
+  DRAW
 } from '../constants/ActionTypes'
 
 const initialState = {
-  addedIds: [],
-  quantityById: {}
+  cardsInHand: [],
 }
 
-function addedIds(state = initialState.addedIds, action) {
+function cardsInHand(state = initialState.cardsInHand, action) {
+  console.log('action', action)
   switch (action.type) {
-    case ADD_TO_HAND:
-      if (state.indexOf(action.productId) !== -1) {
-        return state
-      }
-      return [ ...state, action.productId ]
-    default:
-      return state
-  }
-}
-
-function quantityById(state = initialState.quantityById, action) {
-  switch (action.type) {
-    case ADD_TO_CART:
-      const { productId } = action
-      return {
-        ...state,
-        [productId]: (state[productId] || 0) + 1
+    case DRAW:
+      if (action.discard) {
+        return action.cardsDrawn
+      } else {
+        return state.concat(action.cardsDrawn);
       }
     default:
       return state
@@ -36,20 +25,14 @@ export default function hand(state = initialState, action) {
   switch (action.type) {
     case CHECKOUT_REQUEST:
       return initialState
-    case CHECKOUT_FAILURE:
-      return action.cart
     default:
       return {
-        addedIds: addedIds(state.addedIds, action),
-        quantityById: quantityById(state.quantityById, action)
+        cardsInHand: cardsInHand(state.cardsInHand, action),
       }
   }
 }
 
-export function getQuantity(state, productId) {
-  return state.quantityById[productId] || 0
-}
-
-export function getAddedIds(state) {
-  return state.addedIds
+export function getHandIds(state) {
+  console.log(state)
+  return state.cardsInHand
 }

@@ -1,36 +1,31 @@
 import React, { Component, PropTypes } from 'react'
 import Product from './Product'
 
-export default class Deck extends Component {
+export default class Hand extends Component {
   render() {
-    const { products, total, onCheckoutClicked , onDrawClicked} = this.props
+    const { products } = this.props
 
     const hasProducts = products.length > 0
     const nodes = !hasProducts ?
-      <em>Please add some products to Deck.</em> :
+      <em>Please add some products to Hand.</em> :
       products.map((product, index) =>
         <div key={ 'product.id' + index }>
           { product.title }
         </div>
     )
 
+      console.log('hand"s props', this.props)
+
     return (
       <div>
-        <h3>Your Deck</h3>
+        <h3>Your Hand</h3>
         <div>{nodes}</div>
-        <button onClick={ onCheckoutClicked }
-          disabled={hasProducts ? '' : 'disabled'}>
-          Clear Deck
-        </button>
-        <button onClick={ onDrawClicked.bind(null,3) }>
-          Draw
-        </button>
       </div>
     )
   }
 }
 
-Deck.propTypes = {
+Hand.propTypes = {
   products: PropTypes.array,
   total: PropTypes.string,
   onCheckoutClicked: PropTypes.func

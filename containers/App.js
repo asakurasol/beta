@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import ProductsContainer from './ProductsContainer'
 import DeckContainer from './DeckContainer'
+import HandContainer from './HandContainer'
 
 export default class App extends Component {
   render() {
@@ -11,6 +12,8 @@ export default class App extends Component {
         <ProductsContainer />
         <hr/>
         <DeckContainer />
+        <hr/>
+        <HandContainer />
       </div>
     )
   }

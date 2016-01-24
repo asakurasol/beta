@@ -1,4 +1,5 @@
 import {
+  DRAW,
   ADD_TO_CART,
   CHECKOUT_REQUEST,
   CHECKOUT_FAILURE
@@ -24,9 +25,12 @@ function shuffleArray(array) {
 }
 
 function addedIds(state = initialState.addedIds, action) {
+  console.log('action', action)
   switch (action.type) {
     case ADD_TO_CART:
       return [ ...state, action.productId ]
+    case DRAW:
+      return state.slice(action.cardsDrawn.length)
     default:
       return state
   }
@@ -40,6 +44,9 @@ function quantityById(state = initialState.quantityById, action) {
         ...state,
         [productId]: (state[productId] || 0) + 1
       }
+    case DRAW:
+      const cardsDrawn = action.cardsDrawn
+      return state
     default:
       return state
   }
