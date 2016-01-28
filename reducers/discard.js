@@ -8,13 +8,12 @@ const initialState = {
 }
 
 function cardsInDiscard(state = initialState.cardsInDiscard, action) {
-  console.log('action', action)
   switch (action.type) {
     case DRAW:
       if (action.discard) {
-        return action.cardsDrawn
+        return state.concat(action.cardsDiscarded);
       } else {
-        return state.concat(action.cardsDrawn);
+        return state;
       }
     default:
       return state
