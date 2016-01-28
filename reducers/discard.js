@@ -4,10 +4,10 @@ import {
 } from '../constants/ActionTypes'
 
 const initialState = {
-  cardsInHand: [],
+  cardsInDiscard: [],
 }
 
-function cardsInHand(state = initialState.cardsInHand, action) {
+function cardsInDiscard(state = initialState.cardsInDiscard, action) {
   console.log('action', action)
   switch (action.type) {
     case DRAW:
@@ -21,17 +21,17 @@ function cardsInHand(state = initialState.cardsInHand, action) {
   }
 }
 
-export default function hand(state = initialState, action) {
+export default function discard(state = initialState, action) {
   switch (action.type) {
     case CHECKOUT_REQUEST:
       return initialState
     default:
       return {
-        cardsInHand: cardsInHand(state.cardsInHand, action),
+        cardsInDiscard: cardsInDiscard(state.cardsInDiscard, action),
       }
   }
 }
 
-export function getHandIds(state) {
-  return state.cardsInHand
+export function getDiscardIds(state) {
+  return state.cards
 }
